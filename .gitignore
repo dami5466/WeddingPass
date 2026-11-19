@@ -1,0 +1,26 @@
+﻿node_modules/
+.env
+database/*.db
+database/*.db-shm
+database/*.db-wal
+.neon
+
+# Deployment security
+.env.*
+!.env.example
+node_modules/
+
+# Old server backups
+server*-before-*.js
+server.js.backup*
+server.js.before-*
+server.js.attendance-backup
+server-postgres-before-*.js
+
+# Package backups
+package.json.backup-*
+
+# Local SQLite databases
+database/*.db
+database/*.db-shm
+database/*.db-wal

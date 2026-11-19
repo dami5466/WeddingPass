@@ -1,0 +1,604 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeddingPass | Dashboard</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: #f8f5ef;
+            font-family: Arial, sans-serif;
+            color: #29251f;
+        }
+
+        header {
+            background: #201b17;
+            color: white;
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            color: #d6b46a;
+            margin: 0;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .welcome { margin-bottom: 35px; }
+
+        .welcome h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p { color: #777; }
+
+        .primary {
+            display: inline-block;
+            background: #b18a45;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 7px;
+            text-decoration: none;
+            margin-top: 12px;
+        }
+
+        .primary:hover { background: #967238; }
+
+        .section-title { margin: 40px 0 20px; }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 5px 25px #0000000b;
+        }
+
+        .card h3 {
+            color: #a77d31;
+            margin-top: 0;
+        }
+
+        .card p {
+            color: #777;
+            line-height: 1.6;
+        }
+
+        .wedding-card { border-top: 4px solid #b18a45; }
+
+        .wedding-card .date {
+            color: #a77d31;
+            font-weight: bold;
+        }
+
+        .empty {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            color: #777;
+        }
+
+        #loading { color: #777; }
+        #error { color: #c0392b; }
+
+        .management-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .management-link:hover .card {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px #00000018;
+        }
+
+        .management-card {
+            border-top: 4px solid #b18a45;
+            min-height: 190px;
+        }
+
+        .open-button {
+            display: inline-block;
+            margin-top: 10px;
+            background: #b18a45;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        @media(max-width:600px) {
+            header { padding: 18px; }
+            main { margin-top: 30px; }
+        }
+    
+        /* WEDDINGPASS VIDEO BACKGROUND */
+        body {
+            background: #17130f;
+            color: #fff;
+            isolation: isolate;
+        }
+
+        .dashboard-video-background {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .dashboard-video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.42;
+        }
+
+        .dashboard-video-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                135deg,
+                rgba(20, 15, 12, 0.88),
+                rgba(35, 25, 18, 0.65)
+            );
+            pointer-events: none;
+        }
+
+        header, main {
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            background: rgba(20, 16, 13, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(214, 180, 106, 0.3);
+        }
+
+        .welcome h1,
+        .section-title {
+            color: #fff;
+        }
+
+        .welcome p {
+            color: #e0d7c9;
+        }
+
+        .card, .empty {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(214, 180, 106, 0.35);
+        }
+
+        #loading {
+            color: #fff;
+        }
+
+        #error {
+            color: #ffb4a9;
+        }
+
+        @media(max-width:600px) {
+            .dashboard-video-background video {
+                object-position: center;
+            }
+        }
+
+    
+/* WEDDINGPASS ACCOUNT PROFILE */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.account-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.15);
+    padding: 10px 15px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+}
+
+.account-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #d4af73;
+    color: #172b35;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.account-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.account-details strong {
+    font-size: 14px;
+}
+
+.account-details small {
+    font-size: 11px;
+    opacity: 0.85;
+}
+
+.logout-button {
+    background: #a83d4b;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.logout-button:hover {
+    background: #852d39;
+}
+
+.logout-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+@media(max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .account-profile {
+        width: 100%;
+        box-sizing: border-box;
+        flex-wrap: wrap;
+    }
+}
+
+</style>
+</head>
+
+<body>
+    <div class="dashboard-video-background">
+        <video id="dashboardWeddingVideo"
+               autoplay muted playsinline preload="auto">
+            <source src="/videos/wedding1.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="dashboard-video-overlay"></div>
+
+
+    <header>
+    <div>
+        <h2>WeddingPass</h2>
+        <span>Organizer Dashboard</span>
+    </div>
+
+    <div class="account-profile" id="accountProfile">
+        <div class="account-avatar" id="accountAvatar">WP</div>
+
+        <div class="account-details">
+            <strong id="accountName">Loading account...</strong>
+            <small id="accountEmail">Please wait...</small>
+        </div>
+
+        <button class="logout-button" id="logoutButton">
+            Logout
+        </button>
+    </div>
+</header>
+
+    <main>
+
+        <section class="welcome">
+            <h1>Welcome, <span id="userName">Organizer</span>!</h1>
+
+            <p>
+                Your WeddingPass workspace is ready.
+                Let's make your special day unforgettable.
+            </p>
+
+            <a href="/create-wedding" class="primary">
+                + Create Your Wedding
+            </a>
+        </section>
+
+        <h2 class="section-title">My Weddings</h2>
+
+        <p id="loading">Loading your weddings...</p>
+        <p id="error"></p>
+
+        <section class="cards" id="weddingList"></section>
+
+        <h2 class="section-title">Wedding Management</h2>
+
+        <section class="cards">
+
+            <a href="/guest-management" class="management-link">
+                <div class="card management-card">
+                    <h3>Guest Management</h3>
+                    <p>
+                        Add guests, organize your guest list,
+                        and manage invitation details.
+                    </p>
+                    <span class="open-button">Manage Guests →</span>
+                </div>
+            </a>
+
+            <a href="/guest-management" class="management-link">
+                <div class="card management-card">
+                    <h3>QR Invitations</h3>
+                    <p>
+                        Generate and view unique QR invitations
+                        for every registered guest.
+                    </p>
+                    <span class="open-button">View QR Invitations →</span>
+                </div>
+            </a>
+
+            <a href="/invitation-designer" class="management-link">
+                <div class="card management-card">
+                    <h3>Digital Invitation Designer</h3>
+                    <p>
+                        Create beautiful wedding invitations,
+                        customize your designs and share them online.
+                    </p>
+                    <span class="open-button">Design Invitation →</span>
+                </div>
+            </a>
+            <a href="/scanner" class="management-link">
+                <div class="card management-card">
+                    <h3>QR Scanner</h3>
+                    <p>
+                        Scan guest QR codes at your wedding entrance
+                        and verify invitations.
+                    </p>
+                    <span class="open-button">Open Scanner →</span>
+                </div>
+            </a>
+
+            <a href="/attendance" class="management-link">
+                <div class="card management-card">
+                    <h3>Attendance Dashboard</h3>
+                    <p>
+                        Monitor guest arrivals, track attendance,
+                        and download attendance reports.
+                    </p>
+                    <span class="open-button">View Attendance →</span>
+                </div>
+            </a>
+
+        </section>
+
+    </main>
+
+    <script>
+        async function loadDashboard() {
+            try {
+                const meResponse = await fetch("/api/me");
+
+                if (!meResponse.ok) {
+                    window.location.href = "/register";
+                    return;
+                }
+
+                const me = await meResponse.json();
+
+                document.getElementById("userName").textContent =
+                    me.user.fullName || "Organizer";
+
+                const response = await fetch("/api/weddings");
+
+                if (!response.ok) {
+                    throw new Error("Could not load your weddings.");
+                }
+
+                const result = await response.json();
+                const list = document.getElementById("weddingList");
+                const loading = document.getElementById("loading");
+
+                loading.style.display = "none";
+                list.innerHTML = "";
+
+                if (!result.weddings || result.weddings.length === 0) {
+                    list.innerHTML =
+                        '<div class="empty">You have not created a wedding yet. Click "Create Your Wedding" to get started.</div>';
+                    return;
+                }
+
+                result.weddings.forEach(wedding => {
+                    const card = document.createElement("div");
+                    card.className = "card wedding-card";
+
+                    const title = document.createElement("h3");
+                    title.textContent = wedding.wedding_name;
+
+                    const date = document.createElement("p");
+                    date.className = "date";
+                    date.textContent = wedding.wedding_date
+                        ? new Date(wedding.wedding_date + "T00:00:00").toLocaleDateString()
+                        : "Date not selected";
+
+                    const venue = document.createElement("p");
+                    venue.textContent =
+                        "Venue: " + (wedding.venue || "Not provided");
+
+                    const design = document.createElement("p");
+                    design.textContent = "Design: " + wedding.template;
+
+                    card.append(title, date, venue, design);
+                    list.appendChild(card);
+                });
+
+            } catch (error) {
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("error").textContent = error.message;
+            }
+        }
+
+        loadDashboard();
+    </script>
+
+
+<script>
+(function () {
+    const video = document.getElementById("dashboardWeddingVideo");
+
+    if (!video) return;
+
+    const videos = [
+        "/videos/wedding1.mp4",
+        "/videos/wedding2.mp4",
+        "/videos/wedding3.mp4"
+    ];
+
+    let currentIndex = 0;
+
+    function playNextVideo() {
+        currentIndex = (currentIndex + 1) % videos.length;
+
+        video.src = videos[currentIndex];
+        video.load();
+
+        video.play().catch(error => {
+            console.warn("Dashboard video playback:", error);
+        });
+    }
+
+    video.addEventListener("ended", playNextVideo);
+
+    video.addEventListener("error", function () {
+        console.error("Dashboard wedding video failed:", video.src);
+    });
+
+    video.play().catch(error => {
+        console.warn("Dashboard autoplay:", error);
+    });
+})();
+</script>
+
+
+<script>
+// WEDDINGPASS ACCOUNT PROFILE AND LOGOUT
+(function () {
+    const nameElement = document.getElementById("accountName");
+    const emailElement = document.getElementById("accountEmail");
+    const avatarElement = document.getElementById("accountAvatar");
+    const welcomeElement = document.getElementById("userName");
+    const logoutButton = document.getElementById("logoutButton");
+
+    // Register logout immediately, without waiting for account loading.
+    if (logoutButton) {
+        logoutButton.addEventListener("click", async function () {
+            if (!confirm("Are you sure you want to log out?")) return;
+
+            logoutButton.disabled = true;
+            logoutButton.textContent = "Logging out...";
+
+            try {
+                const response = await fetch("/api/logout", {
+                    method: "POST",
+                    credentials: "same-origin",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || "Logout failed.");
+                }
+
+                window.location.replace("/login");
+
+            } catch (error) {
+                alert("Logout failed: " + error.message);
+                logoutButton.disabled = false;
+                logoutButton.textContent = "Logout";
+            }
+        });
+    }
+
+    // Load account information separately.
+    async function loadAccount() {
+        try {
+            const response = await fetch("/api/me", {
+                credentials: "same-origin",
+                cache: "no-store"
+            });
+
+            if (!response.ok) {
+                window.location.replace("/login");
+                return;
+            }
+
+            const result = await response.json();
+            const user = result.user;
+
+            if (!user) {
+                window.location.replace("/login");
+                return;
+            }
+
+            const fullName = user.fullName || "WeddingPass Organizer";
+            const email = user.email || "";
+
+            if (nameElement) nameElement.textContent = fullName;
+            if (emailElement) emailElement.textContent = email;
+
+            const initials = fullName.trim()
+                .split(/\s+/)
+                .slice(0, 2)
+                .map(part => part.charAt(0).toUpperCase())
+                .join("");
+
+            if (avatarElement) avatarElement.textContent = initials || "WP";
+            if (welcomeElement) welcomeElement.textContent = fullName;
+
+        } catch (error) {
+            console.error("Account loading error:", error);
+
+            if (nameElement) nameElement.textContent = "Account unavailable";
+            if (emailElement) emailElement.textContent = "Please refresh the page";
+        }
+    }
+
+    loadAccount();
+})();
+</script>
+
+</body>
+</html>
+
+
+

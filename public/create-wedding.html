@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeddingPass | Create Your Wedding</title>
+    <link rel="stylesheet" href="/css/auth.css">
+    <style>
+        body {
+            background: #f8f5ef;
+            font-family: Arial, sans-serif;
+            color: #29251f;
+        }
+        .page {
+            max-width: 650px;
+            margin: 45px auto;
+            padding: 20px;
+        }
+        .form-card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 8px 35px #0000000c;
+        }
+        h1 { color: #a77d31; }
+        .intro { color: #777; line-height: 1.6; }
+        label {
+            display: block;
+            margin: 20px 0 8px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            border-radius: 7px;
+            background: #b18a45;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:disabled { opacity: .6; cursor: wait; }
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #a77d31;
+            text-decoration: none;
+        }
+        #message { margin-top: 15px; }
+        .error { color: #c0392b; }
+        .success { color: #218838; }
+    </style>
+<link rel="stylesheet" href="/css/weddingpass-background.css">
+</head>
+<body>
+<div class="weddingpass-background">
+    <video id="weddingpassVideoA" muted playsinline preload="auto"></video>
+    <video id="weddingpassVideoB" muted playsinline preload="auto"></video>
+</div>
+<div class="weddingpass-overlay"></div>
+    <main class="page">
+        <a class="back" href="/dashboard">← Back to Dashboard</a>
+
+        <div class="form-card">
+            <h1>Create Your Wedding</h1>
+            <p class="intro">Tell us about your special day. You can update these details later.</p>
+
+            <form id="weddingForm">
+                <label for="weddingName">Wedding Name</label>
+                <input
+                    type="text"
+                    id="weddingName"
+                    placeholder="e.g. Damilare & Anjola"
+                    maxlength="100"
+                    required
+                >
+
+                <label for="weddingDate">Wedding Date</label>
+                <input type="date" id="weddingDate">
+
+                <label for="venue">Wedding Venue</label>
+                <input
+                    type="text"
+                    id="venue"
+                    placeholder="Enter your wedding venue"
+                    maxlength="200"
+                >
+
+                <label for="template">Choose Invitation Design</label>
+                <select id="template" required>
+                    <option value="Luxury Gold & White">Luxury Gold & White</option>
+                    <option value="Royal Black & Gold">Royal Black & Gold</option>
+                    <option value="Elegant White & Wine Red">Elegant White & Wine Red</option>
+                    <option value="Modern Colourful">Modern Colourful</option>
+                    <option value="Custom">Custom Design</option>
+                </select>
+
+                <button type="submit" id="createButton">Save My Wedding</button>
+                <p id="message"></p>
+            </form>
+        </div>
+    </main>
+
+    <script src="/js/create-wedding.js"></script>
+<script src="/js/weddingpass-background.js"></script>
+</body>
+</html>
+

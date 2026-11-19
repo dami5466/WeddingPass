@@ -1,0 +1,582 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WeddingPass | Attendance Dashboard</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f7f5f0;
+    color: #29251f;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: #201b17;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.brand {
+    color: #d6b46a;
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+main {
+    max-width: 1250px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.heading {
+    margin-bottom: 30px;
+}
+
+.heading h1 {
+    font-family: Georgia, serif;
+    font-size: 35px;
+    margin-bottom: 8px;
+}
+
+.heading p {
+    color: #777;
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+select, button {
+    padding: 13px 16px;
+    border-radius: 7px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+select {
+    min-width: 230px;
+    background: white;
+}
+
+button {
+    cursor: pointer;
+}
+
+.gold {
+    background: #b18a45;
+    color: white;
+    border: none;
+}
+
+.dark {
+    background: #29251f;
+    color: white;
+    border: none;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 13px;
+    box-shadow: 0 5px 20px #0000000a;
+    border-top: 4px solid #b18a45;
+}
+
+.stat-card p {
+    color: #777;
+    margin: 0 0 15px;
+}
+
+.stat-card h2 {
+    font-size: 32px;
+    margin: 0;
+}
+
+.stat-card span {
+    font-size: 12px;
+    color: #999;
+}
+
+.section {
+    background: white;
+    padding: 25px;
+    margin-top: 28px;
+    border-radius: 13px;
+    box-shadow: 0 5px 20px #0000000a;
+}
+
+.section h2 {
+    font-family: Georgia, serif;
+    margin-top: 0;
+}
+
+.progress-track {
+    width: 100%;
+    height: 14px;
+    background: #eee9df;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #b18a45;
+    transition: width .4s;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 15px;
+}
+
+.category-card {
+    background: #f8f5ef;
+    padding: 18px;
+    border-radius: 10px;
+}
+
+.category-card h3 {
+    color: #a77d31;
+    margin-top: 0;
+}
+
+.category-card p {
+    margin-bottom: 5px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 750px;
+}
+
+th, td {
+    text-align: left;
+    padding: 15px 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+}
+
+th {
+    background: #f8f5ef;
+    color: #856329;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.checked {
+    background: #e3f5e9;
+    color: #21834b;
+}
+
+.pending {
+    background: #fff0d8;
+    color: #a46b19;
+}
+
+#message {
+    color: #b33;
+    margin: 15px 0;
+}
+
+.empty {
+    color: #888;
+    text-align: center;
+    padding: 25px;
+}
+
+@media(max-width:600px) {
+    header {
+        padding: 18px;
+    }
+
+    .heading h1 {
+        font-size: 28px;
+    }
+
+    .section {
+        padding: 17px;
+    }
+}
+</style>
+<link rel="stylesheet" href="/css/weddingpass-background.css">
+</head>
+
+<body>
+<div class="weddingpass-background">
+    <video id="weddingpassVideoA" muted playsinline preload="auto"></video>
+    <video id="weddingpassVideoB" muted playsinline preload="auto"></video>
+</div>
+<div class="weddingpass-overlay"></div>
+
+<header>
+    <a href="/dashboard" class="brand">WeddingPass</a>
+
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/guest-management">Guests</a>
+        <a href="/scanner">QR Scanner</a>
+    </nav>
+</header>
+
+<main>
+
+    <section class="heading">
+        <h1>Attendance Dashboard</h1>
+        <p>Monitor guest arrivals and track your wedding attendance.</p>
+    </section>
+
+    <div class="controls">
+        <select id="weddingSelect">
+            <option value="">Loading weddings...</option>
+        </select>
+
+        <button class="gold" id="refreshButton">
+            Refresh Attendance
+        </button>
+
+        <button class="dark" id="exportButton">
+            Download Report
+        </button>
+    </div>
+
+    <p id="message"></p>
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <p>Total Invited Guests</p>
+            <h2 id="totalGuests">0</h2>
+            <span>Registered invitations</span>
+        </div>
+
+        <div class="stat-card">
+            <p>Guests Checked In</p>
+            <h2 id="checkedIn">0</h2>
+            <span>Successfully admitted</span>
+        </div>
+
+        <div class="stat-card">
+            <p>Pending Guests</p>
+            <h2 id="pending">0</h2>
+            <span>Yet to arrive</span>
+        </div>
+
+        <div class="stat-card">
+            <p>Attendance Rate</p>
+            <h2 id="attendanceRate">0%</h2>
+            <span>Guest arrival percentage</span>
+        </div>
+
+    </section>
+
+    <section class="section">
+        <h2>Overall Attendance</h2>
+        <p id="attendanceText">0 out of 0 guests have arrived.</p>
+
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Attendance by Category</h2>
+        <div class="category-grid" id="categoryGrid">
+            <p class="empty">Select a wedding to view attendance.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Guest Attendance History</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Guest Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Check-in Time</th>
+                    </tr>
+                </thead>
+
+                <tbody id="guestTable">
+                    <tr>
+                        <td colspan="6" class="empty">
+                            Select a wedding to view guests.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+<script>
+
+const weddingSelect = document.getElementById("weddingSelect");
+const message = document.getElementById("message");
+
+let currentReport = null;
+
+async function loadWeddings() {
+    try {
+        const response = await fetch("/api/weddings");
+
+        if (!response.ok) {
+            throw new Error("Could not load weddings. Please log in again.");
+        }
+
+        const result = await response.json();
+
+        weddingSelect.innerHTML =
+            '<option value="">Select a wedding</option>';
+
+        result.weddings.forEach(wedding => {
+            const option = document.createElement("option");
+            option.value = wedding.id;
+            option.textContent = wedding.wedding_name;
+            weddingSelect.appendChild(option);
+        });
+
+        if (result.weddings.length > 0) {
+            weddingSelect.value = result.weddings[0].id;
+            await loadAttendance();
+        }
+
+    } catch (error) {
+        message.textContent = error.message;
+    }
+}
+
+async function loadAttendance() {
+    const weddingId = weddingSelect.value;
+
+    if (!weddingId) return;
+
+    message.textContent = "Loading attendance...";
+
+    try {
+        const response = await fetch(
+            `/api/weddings/${weddingId}/attendance`
+        );
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || "Could not load attendance.");
+        }
+
+        currentReport = result;
+
+        const stats = result.summary;
+
+        document.getElementById("totalGuests").textContent =
+            stats.total;
+
+        document.getElementById("checkedIn").textContent =
+            stats.checkedIn;
+
+        document.getElementById("pending").textContent =
+            stats.pending;
+
+        document.getElementById("attendanceRate").textContent =
+            stats.attendanceRate + "%";
+
+        document.getElementById("attendanceText").textContent =
+            `${stats.checkedIn} out of ${stats.total} guests have arrived.`;
+
+        document.getElementById("progressFill").style.width =
+            stats.attendanceRate + "%";
+
+        displayCategories(result.categories);
+        displayGuests(result.guests);
+
+        message.textContent = "";
+
+    } catch (error) {
+        message.textContent = error.message;
+    }
+}
+
+function displayCategories(categories) {
+    const container = document.getElementById("categoryGrid");
+    container.innerHTML = "";
+
+    if (categories.length === 0) {
+        container.innerHTML =
+            '<p class="empty">No guest categories available.</p>';
+        return;
+    }
+
+    categories.forEach(category => {
+        const card = document.createElement("div");
+        card.className = "category-card";
+
+        const title = document.createElement("h3");
+        title.textContent = category.category;
+
+        const total = document.createElement("p");
+        total.textContent = "Invited: " + category.total;
+
+        const arrived = document.createElement("p");
+        arrived.textContent = "Arrived: " + (category.checked_in || 0);
+
+        card.append(title, total, arrived);
+        container.appendChild(card);
+    });
+}
+
+function displayGuests(guests) {
+    const table = document.getElementById("guestTable");
+    table.innerHTML = "";
+
+    if (guests.length === 0) {
+        table.innerHTML =
+            '<tr><td colspan="6" class="empty">No guests found.</td></tr>';
+        return;
+    }
+
+    guests.forEach(guest => {
+        const row = document.createElement("tr");
+
+        const values = [
+            guest.guest_name,
+            guest.phone || "-",
+            guest.email || "-",
+            guest.category,
+            guest.status,
+            guest.checked_in_at || "Not arrived"
+        ];
+
+        values.forEach((value, index) => {
+            const cell = document.createElement("td");
+
+            if (index === 4) {
+                const badge = document.createElement("span");
+                badge.className =
+                    guest.status === "Checked In" ? "badge checked" : "badge pending";
+
+                badge.textContent = value;
+                cell.appendChild(badge);
+            } else {
+                cell.textContent = value;
+            }
+
+            row.appendChild(cell);
+        });
+
+        table.appendChild(row);
+    });
+}
+
+function exportReport() {
+    if (!currentReport) {
+        alert("Please select a wedding first.");
+        return;
+    }
+
+    const guests = currentReport.guests;
+
+    const rows = [
+        ["Guest Name", "Phone", "Email", "Category", "Status", "Check-in Time"]
+    ];
+
+    guests.forEach(guest => {
+        rows.push([
+            guest.guest_name,
+            guest.phone || "",
+            guest.email || "",
+            guest.category,
+            guest.status,
+            guest.checked_in_at || ""
+        ]);
+    });
+
+    const csv = rows.map(row =>
+        row.map(value =>
+            '"' + String(value).replace(/"/g, '""') + '"'
+        ).join(",")
+    ).join("\r\n");
+
+    const blob = new Blob(["\uFEFF" + csv], {
+        type: "text/csv;charset=utf-8;"
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "WeddingPass-Attendance-Report.csv";
+    link.click();
+
+    URL.revokeObjectURL(url);
+}
+
+weddingSelect.addEventListener("change", loadAttendance);
+
+document.getElementById("refreshButton")
+    .addEventListener("click", loadAttendance);
+
+document.getElementById("exportButton")
+    .addEventListener("click", exportReport);
+
+loadWeddings();
+
+</script>
+
+<script src="/js/weddingpass-background.js"></script>
+</body>
+</html>
+
+

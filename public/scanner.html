@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeddingPass | Guest Scanner</title>
+    <link rel="stylesheet" href="/css/scanner.css">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+<link rel="stylesheet" href="/css/weddingpass-background.css">
+</head>
+<body>
+<div class="weddingpass-background">
+    <video id="weddingpassVideoA" muted playsinline preload="auto"></video>
+    <video id="weddingpassVideoB" muted playsinline preload="auto"></video>
+</div>
+<div class="weddingpass-overlay"></div>
+
+    <header class="topbar">
+        <a href="/dashboard" class="brand">Wedding<span>Pass</span></a>
+        <a href="/guest-management" class="back-link">Guest Management</a>
+    </header>
+
+    <main class="container">
+        <section class="heading">
+            <p class="eyebrow">EVENT ACCESS CONTROL</p>
+            <h1>Guest QR Scanner</h1>
+            <p>Scan each guest's invitation to verify and record their arrival.</p>
+        </section>
+
+        <section class="scanner-card">
+            <div class="scanner-heading">
+                <h2>Scan Invitation</h2>
+                <span class="live-indicator">● READY</span>
+            </div>
+
+            <div id="reader"></div>
+
+            <p class="camera-note">
+                Allow camera access when your browser asks for permission.
+            </p>
+
+            <button id="startButton" class="primary-button">
+                Start Camera Scanner
+            </button>
+
+            <button id="stopButton" class="secondary-button" disabled>
+                Stop Scanner
+            </button>
+
+            <div class="divider"><span>OR</span></div>
+
+            <form id="manualForm">
+                <label for="manualToken">Enter invitation token manually</label>
+                <input
+                    type="text"
+                    id="manualToken"
+                    placeholder="Paste QR invitation URL or token"
+                    autocomplete="off"
+                >
+                <button type="submit" class="manual-button">
+                    Verify Invitation
+                </button>
+            </form>
+        </section>
+
+        <section id="result" class="result-card hidden">
+            <div id="resultIcon" class="result-icon">✓</div>
+            <h2 id="resultTitle">Guest Verified</h2>
+            <p id="resultMessage"></p>
+            <div id="guestDetails"></div>
+            <button id="nextButton" class="primary-button">
+                Scan Next Guest
+            </button>
+        </section>
+
+        <footer>
+            <p>WeddingPass — One Invitation. One Scan. One Beautiful Experience.</p>
+        </footer>
+    </main>
+
+    <script src="/js/scanner.js"></script>
+<script src="/js/weddingpass-background.js"></script>
+</body>
+</html>
+

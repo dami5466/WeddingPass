@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeddingPass | Invitation Designer</title>
+    <link rel="stylesheet" href="/css/invitation-designer.css">
+<link rel="stylesheet" href="/css/weddingpass-background.css">
+</head>
+<body>
+<div class="weddingpass-background">
+    <video id="weddingpassVideoA" muted playsinline preload="auto"></video>
+    <video id="weddingpassVideoB" muted playsinline preload="auto"></video>
+</div>
+<div class="weddingpass-overlay"></div>
+
+<header class="topbar">
+    <a href="/dashboard" class="brand">Wedding<span>Pass</span></a>
+    <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+</header>
+
+<main class="designer-container">
+
+    <section class="page-heading">
+        <p class="eyebrow">CREATE SOMETHING BEAUTIFUL</p>
+        <h1>Invitation Designer</h1>
+        <p>Design a beautiful digital invitation for your special day.</p>
+    </section>
+
+    <div class="designer-layout">
+
+        <section class="editor-panel">
+            <h2>Your Wedding Details</h2>
+            <p class="panel-description">Personalize your invitation below.</p>
+
+            <label for="weddingId">Select Wedding</label>
+            <select id="weddingId">
+                <option value="">Loading your weddings...</option>
+            </select>
+
+            <div class="divider"></div>
+
+            <label for="brideName">Bride's Name</label>
+            <input type="text" id="brideName" maxlength="100"
+                   placeholder="Enter bride's name">
+
+            <label for="groomName">Groom's Name</label>
+            <input type="text" id="groomName" maxlength="100"
+                   placeholder="Enter groom's name">
+
+            <label for="weddingDate">Wedding Date</label>
+            <input type="date" id="weddingDate">
+
+            <label for="venue">Wedding Venue</label>
+            <input type="text" id="venue" maxlength="200"
+                   placeholder="Enter wedding venue">
+
+            <label for="invitationMessage">Invitation Message</label>
+            <textarea id="invitationMessage" rows="5" maxlength="1000"
+                placeholder="Together with our families, we invite you to celebrate our special day..."></textarea>
+
+            <label for="template">Choose Your Design</label>
+            <select id="template">
+                <option value="Luxury Gold & White">Luxury Gold & White</option>
+                <option value="Royal Black & Gold">Royal Black & Gold</option>
+                <option value="Elegant White & Wine Red">Elegant White & Wine Red</option>
+                <option value="Modern Colourful">Modern Colourful</option>
+                <option value="Custom">Custom</option>
+            </select>
+
+            <button type="button" id="saveButton" class="save-button">
+                Save Invitation Design
+            </button>
+
+            <p id="message" class="message"></p>
+        </section>
+
+        <section class="preview-panel">
+            <div class="preview-heading">
+                <div>
+                    <p class="eyebrow">LIVE PREVIEW</p>
+                    <h2>Your Invitation</h2>
+                </div>
+                <span class="live-badge">LIVE</span>
+            </div>
+
+            <div class="invitation theme-gold" id="invitationPreview">
+                <div class="invitation-border">
+                    <p class="invitation-small">TOGETHER WITH THEIR FAMILIES</p>
+
+                    <div class="ornament">✦</div>
+
+                    <p class="invitation-intro">
+                        REQUEST THE PLEASURE OF YOUR COMPANY
+                    </p>
+
+                    <h1 id="previewCouple">Bride & Groom</h1>
+
+                    <p class="invitation-and">TO CELEBRATE THEIR WEDDING</p>
+
+                    <div class="ornament">❦</div>
+
+                    <p id="previewMessage" class="preview-message">
+                        Together with our families, we invite you to celebrate
+                        our special day.
+                    </p>
+
+                    <div class="event-details">
+                        <p id="previewDate">Wedding Date</p>
+                        <span class="detail-divider"></span>
+                        <p id="previewVenue">Wedding Venue</p>
+                    </div>
+
+                    <p class="invitation-footer">WE LOOK FORWARD TO CELEBRATING WITH YOU</p>
+                    <p class="preview-brand">WEDDINGPASS</p>
+                </div>
+            </div>
+
+            <p class="preview-note">
+                Your preview updates automatically as you edit your details.
+            </p>
+        </section>
+
+    </div>
+</main>
+
+<script src="/js/invitation-designer.js"></script>
+<script src="/js/weddingpass-background.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#17130f">
+    <title>Wedding Invitation | WeddingPass</title>
+    <link rel="stylesheet" href="/css/weddingpass-background.css">
+    <link rel="stylesheet" href="/css/public-invitation.css">
+</head>
+<body>
+
+<div class="weddingpass-background">
+    <video id="weddingpassVideoA" muted playsinline preload="auto"></video>
+    <video id="weddingpassVideoB" muted playsinline preload="auto"></video>
+</div>
+<div class="weddingpass-overlay"></div>
+
+<header class="public-header">
+    <a href="/" class="brand">Wedding<span>Pass</span></a>
+    <span class="header-label">DIGITAL WEDDING INVITATION</span>
+</header>
+
+<main class="invitation-page">
+
+    <div id="loading" class="loading">
+        <div class="loading-symbol">✦</div>
+        <h2>Preparing something beautiful...</h2>
+        <p>Please wait while we load your invitation.</p>
+    </div>
+
+    <section id="invitationContent" class="invitation-content" hidden>
+
+        <div class="invitation-card" id="invitationCard">
+            <div class="card-inner">
+
+                <p class="top-label">TOGETHER WITH THEIR FAMILIES</p>
+
+                <div class="ornament">✦</div>
+
+                <p class="request-text">
+                    REQUEST THE PLEASURE OF YOUR COMPANY
+                </p>
+
+                <h1 id="coupleNames">Bride & Groom</h1>
+
+                <p class="celebration-text">
+                    TO CELEBRATE THEIR WEDDING
+                </p>
+
+                <div class="ornament">❦</div>
+
+                <p id="invitationMessage" class="invitation-message"></p>
+
+                <div class="details">
+                    <div class="detail-item">
+                        <span class="detail-label">THE SPECIAL DAY</span>
+                        <h2 id="weddingDate">Wedding Date</h2>
+                    </div>
+
+                    <div class="detail-separator"></div>
+
+                    <div class="detail-item">
+                        <span class="detail-label">THE VENUE</span>
+                        <h2 id="weddingVenue">Wedding Venue</h2>
+                    </div>
+                </div>
+
+                <p class="closing-message">
+                    WE LOOK FORWARD TO CELEBRATING WITH YOU
+                </p>
+
+                <div class="card-brand">WEDDINGPASS</div>
+
+            </div>
+        </div>
+
+        <section class="sharing-section">
+            <h2>Share the Happiness ❤️</h2>
+            <p>Invite your family and friends to celebrate this special day.</p>
+
+            <div class="share-buttons">
+                <button id="whatsappButton" class="whatsapp-button" type="button">
+                    Share on WhatsApp
+                </button>
+
+                <button id="copyButton" class="copy-button" type="button">
+                    Copy Invitation Link
+                </button>
+            </div>
+
+            <p id="shareMessage" class="share-message" aria-live="polite"></p>
+
+            <div class="qr-section">
+                <h3>Scan to View Invitation</h3>
+                <p>Share this QR code with your loved ones.</p>
+                <img id="invitationQR" alt="QR code for this wedding invitation">
+            </div>
+        </section>
+
+    </section>
+
+    <section id="errorContent" class="error-content" hidden>
+        <div class="error-symbol">♡</div>
+        <h2>Invitation Not Found</h2>
+        <p>This invitation may have been removed or the link may be incorrect.</p>
+        <a href="/">Visit WeddingPass</a>
+    </section>
+
+</main>
+
+<footer class="public-footer">
+    Made with love by <strong>WeddingPass</strong>
+    <p>One Invitation. One Scan. One Beautiful Experience.</p>
+</footer>
+
+<script src="/js/public-invitation.js"></script>
+<script src="/js/weddingpass-background.js"></script>
+</body>
+</html>

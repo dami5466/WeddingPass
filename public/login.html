@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In | WeddingPass</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/weddingpass-background.css">
+</head>
+
+<body class="auth-body">
+
+<div class="weddingpass-background">
+    <video id="weddingpassVideoA" muted playsinline preload="auto"></video>
+    <video id="weddingpassVideoB" muted playsinline preload="auto"></video>
+</div>
+
+<div class="weddingpass-overlay"></div>
+
+<div class="auth-container">
+    <a href="/" class="logo">Wedding<span>Pass</span></a>
+
+    <div class="auth-card">
+        <p class="eyebrow">WELCOME BACK</p>
+
+        <h1>Welcome Back</h1>
+
+        <p class="auth-description">
+            Log in to manage your weddings, invitations and guests.
+        </p>
+
+        <div id="message" class="message"></div>
+
+        <form id="loginForm">
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email address"
+                autocomplete="email"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+            >
+
+            <button type="submit" id="loginButton">Log In</button>
+        </form>
+
+        <p class="auth-switch">
+            Don't have an account? <a href="/register">Create Account</a>
+        </p>
+    </div>
+
+    <p class="auth-footer">
+        © 2026 WeddingPass. Making beautiful memories.
+    </p>
+</div>
+
+<script src="/js/login.js"></script>
+<script src="/js/weddingpass-background.js"></script>
+
+</body>
+</html>

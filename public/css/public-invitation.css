@@ -1,0 +1,335 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: #fff;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.public-header {
+    position: relative;
+    z-index: 2;
+    min-height: 75px;
+    padding: 18px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    background: rgba(20,16,13,.85);
+    border-bottom: 1px solid rgba(214,180,106,.3);
+    backdrop-filter: blur(14px);
+}
+
+.brand {
+    color: #fff;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.brand span {
+    color: #d6b46a;
+}
+
+.header-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #d6b46a;
+}
+
+.invitation-page {
+    position: relative;
+    z-index: 1;
+    width: min(900px, 94%);
+    margin: 45px auto;
+}
+
+.loading,
+.error-content {
+    padding: 55px 20px;
+    text-align: center;
+    background: rgba(255,255,255,.95);
+    color: #30271e;
+    border-radius: 18px;
+}
+
+.loading-symbol,
+.error-symbol {
+    color: #c39b48;
+    font-size: 45px;
+}
+
+.error-content a {
+    display: inline-block;
+    padding: 13px 24px;
+    background: #a77c32;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.invitation-card {
+    padding: 14px;
+    background: #f5ead0;
+    color: #70501d;
+    border-radius: 5px;
+    box-shadow: 0 20px 65px rgba(0,0,0,.35);
+}
+
+.card-inner {
+    min-height: 620px;
+    padding: 65px 35px;
+    border: 2px solid #c6a45b;
+    outline: 1px solid rgba(198,164,91,.7);
+    outline-offset: -9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.top-label,
+.request-text,
+.celebration-text,
+.closing-message,
+.detail-label {
+    letter-spacing: 3px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.ornament {
+    margin: 22px 0;
+    color: #bd994e;
+    font-size: 33px;
+}
+
+.request-text {
+    margin-top: 5px;
+}
+
+#coupleNames {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    margin: 20px 0;
+    font-family: Georgia, serif;
+    font-size: clamp(36px, 8vw, 65px);
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+.celebration-text {
+    margin: 0;
+}
+
+.invitation-message {
+    max-width: 520px;
+    margin: 20px auto 35px;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    line-height: 1.9;
+    white-space: pre-wrap;
+}
+
+.details {
+    width: 100%;
+    max-width: 560px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin: 15px 0 35px;
+}
+
+.detail-item {
+    flex: 1;
+    min-width: 0;
+}
+
+.detail-label {
+    display: block;
+    color: #9a793e;
+}
+
+.detail-item h2 {
+    overflow-wrap: anywhere;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.detail-separator {
+    width: 1px;
+    height: 75px;
+    background: #c6a45b;
+}
+
+.closing-message {
+    line-height: 1.8;
+}
+
+.card-brand {
+    margin-top: 28px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 5px;
+}
+
+.theme-black {
+    background: #171717;
+    color: #e4c477;
+}
+
+.theme-black .card-inner {
+    border-color: #c6a45b;
+}
+
+.theme-wine {
+    background: #fff8f5;
+    color: #752c42;
+}
+
+.theme-wine .card-inner {
+    border-color: #9b5365;
+}
+
+.theme-colourful {
+    background: linear-gradient(135deg, #fff3db, #f8dfe7, #e4f0ec);
+    color: #68405c;
+}
+
+.theme-colourful .card-inner {
+    border-color: #b77a8c;
+}
+
+.sharing-section {
+    margin-top: 35px;
+    padding: 30px 20px;
+    text-align: center;
+    background: rgba(255,255,255,.95);
+    color: #33291e;
+    border-radius: 16px;
+}
+
+.sharing-section h2 {
+    color: #8c682e;
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 22px 0 10px;
+}
+
+.share-buttons button {
+    min-height: 46px;
+    padding: 12px 22px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.whatsapp-button {
+    background: #218c52;
+    color: white;
+}
+
+.copy-button {
+    background: #a77c32;
+    color: white;
+}
+
+.share-message {
+    min-height: 20px;
+    color: #287b49;
+    font-size: 13px;
+}
+
+.qr-section {
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #eadfca;
+}
+
+.qr-section img {
+    display: block;
+    width: 190px;
+    height: 190px;
+    object-fit: contain;
+    margin: 18px auto;
+    padding: 8px;
+    background: white;
+    border: 1px solid #e3d4b9;
+    border-radius: 8px;
+}
+
+.public-footer {
+    position: relative;
+    z-index: 1;
+    padding: 25px;
+    text-align: center;
+    color: #eee0c7;
+    font-size: 13px;
+}
+
+.public-footer strong {
+    color: #d6b46a;
+}
+
+.public-footer p {
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media(max-width:600px) {
+    .public-header {
+        padding: 15px 5%;
+    }
+
+    .header-label {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .invitation-page {
+        margin: 25px auto;
+    }
+
+    .card-inner {
+        min-height: 560px;
+        padding: 50px 20px;
+    }
+
+    .top-label,
+    .request-text,
+    .celebration-text,
+    .closing-message {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .invitation-message {
+        font-size: 15px;
+    }
+
+    .details {
+        gap: 12px;
+    }
+
+    .detail-item h2 {
+        font-size: 14px;
+    }
+}
